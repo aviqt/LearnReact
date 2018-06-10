@@ -1,64 +1,53 @@
 import React from 'react';
+import {post} from '../utils/request';
 import formProvider from '../utils/formProvider';
+import FormItem from '../components/FormItem';
+import HomeLayout from '../layouts/HomeLayout';
 
 class UserAdd extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
-
     const {form: {name, age, gender}, formValid} = this.props;
     if (!formValid) {
       alert('请填写正确的信息后重试');
       return;
     }
-
-    fetch('http://localhost:4000/user', {
-      method: 'post',
-      body: JSON.stringify({
-        name: name.value,
-        age: age.value,
-        gender: gender.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+	let data = {
+      name: name.value,
+      age: age.value,
+      gender: gender.value
+    };
+    post('http://localhost:4000/user', data,this)
+    .then((res) => {
+      if (res.id) {
+        alert('添加用户成功');
+	    this.props.history.push('/user/list');
+      } else {
+        alert('添加失败');
       }
     })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.id) {
-          alert('添加用户成功');
-        } else {
-          alert('添加失败');
-        }
-      })
-      .catch((err) => console.error(err));
+    .catch((err) => console.error(err));
   }
   render () {
     const {form: {name, age, gender}, onFormChange} = this.props;
     return (
-      <div>
-        <header>
-          <h1>添加用户</h1>
-        </header>
-
-        <main>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-            <label>用户名：</label>
-            <input
+      <HomeLayout title='UserAdd'>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+	      <FormItem label='用户名：' valid={name.valid} error={name.error}>
+	  	  <input
               type="text"
               value={name.value}
               onChange={(e) => onFormChange('name', e.target.value)}
             />
-            {!name.valid && <span>{name.error}</span>}
-            <br/>
-            <label>年龄：</label>
+	  	</FormItem>
+	      <FormItem label='年龄：' valid={age.valid} error={age.error}>
             <input
               type="number"
               value={age.value || ''}
               onChange={(e) => onFormChange('age', +e.target.value)}
             />
-            {!age.valid && <span>{age.error}</span>}
-            <br/>
-            <label>性别：</label>
+	  	</FormItem>
+          <FormItem label="性别：" valid={gender.valid} error={gender.error}>
             <select
               value={gender.value}
               onChange={(e) => onFormChange('gender', e.target.value)}
@@ -67,13 +56,11 @@ class UserAdd extends React.Component {
               <option value="male">男</option>
               <option value="female">女</option>
             </select>
-            {!gender.valid && <span>{gender.error}</span>}
-            <br/>
-            <br/>
-            <input type="submit" value="提交"/>
-          </form>
-        </main>
-      </div>
+          </FormItem>
+          <br/>
+          <input type="submit" value="提交"/>
+        </form>
+      </HomeLayout>
     );
   }
 }
