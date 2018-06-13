@@ -20,7 +20,7 @@ class UserList extends React.Component {
   }
   
   handleEdit(user){
-	React.createElement("h1", null, "Hello World")
+	this.props.history.push('/user/edit/' + user.id);
   }
   handleDel(user){
 	let that = this;
@@ -47,7 +47,7 @@ class UserList extends React.Component {
   render () {
 	const {userList} = this.state;
     return (
-      <HomeLayout title = 'UserList'>
+      <HomeLayout title = '用户列表'>
         <table style={{width:'400px'}}>
           <thead>
             <tr>

@@ -23,7 +23,7 @@ export default function request (method, url, body,pageObj) {
 	  //window.location.href = '/login';
 	  //console.log(pageObj);
 	  pageObj.props.history.push('/login');
-      return Promise.reject('Unauthorized.');
+      //return Promise.reject('Unauthorized.');
     } else {
       const token = res.headers.get('access-token');
       if (token) {
