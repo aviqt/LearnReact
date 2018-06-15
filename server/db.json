@@ -13,14 +13,8 @@
       "id": 10003
     },
     {
-      "name": "aviq",
-      "age": 14,
-      "gender": "male",
-      "id": 10004
-    },
-    {
       "name": "包千语",
-      "age": 15,
+      "age": 17,
       "gender": "female",
       "id": 10005
     },
@@ -75,10 +69,16 @@
       "owner_id": 10000
     },
     {
-      "id": 10001,
       "name": "Java从入门到放弃",
-      "price": 1990,
-      "owner_id": 10001
+      "price": 199,
+      "owner_id": 10001,
+      "id": 10001
+    },
+    {
+      "name": "REACT入门全家桶",
+      "price": 88,
+      "owner_id": 10005,
+      "id": 10002
     }
   ]
 }

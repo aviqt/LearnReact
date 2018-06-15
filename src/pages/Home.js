@@ -6,6 +6,8 @@ class Home extends Component {
   render() {
     return (
       <HomeLayout title='Welcome'>
+        <Link to='/book/list'>BookList</Link><br />
+        <Link to='/book/add'>BookAdd</Link><br />
         <Link to='/user/list'>UserList</Link><br />
         <Link to='/user/add'>UserAdd</Link><br />
         <Link to='/input/demo'>InputDemo</Link>
