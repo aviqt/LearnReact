@@ -9,7 +9,7 @@ import UserEditPage from './pages/UserEdit';
 import UserListPage from './pages/UserList';
 import BookListPage from './pages/BookList';
 import BookAddPage from './pages/BookAdd';
-import BookEditPage from './pages/BookEdit';
+import BookEditPage from './pages/BookEdit'
 import InputDemoPage from './pages/InputDemo';
 
 class App extends Component {

@@ -12,7 +12,7 @@ class BookList extends React.Component {
   componentWillMount(){
 	get('http://localhost:4000/book',this)
 	.then(res => {
-	  console.log(res);
+	  //console.log(res);
 	  this.setState({
 	    bookList:res
 	  });
@@ -25,7 +25,7 @@ class BookList extends React.Component {
   handleDel(book){
 	let that = this;
 	Modal.confirm({
-	  title:'确定要删除' + book.name + '用户吗?',
+	  title:'确定要删除' + book.name + '吗?',
 	  content:'此操作不可逆!!', 
 	  onOk() {
 	    del('http://localhost:4000/book/' + book.id ,'',that)
@@ -33,11 +33,11 @@ class BookList extends React.Component {
 	      that.setState({
 	        bookList:that.state.bookList.filter(i => i.id !== book.id)
 	      });
-	      alert('删除用户成功');
+	      alert('删除图书成功');
 	    })
 	    .catch(err => {
 	      console.log(err);
-	      alert('删除用户失败');
+	      alert('删除图书失败');
 	    })
 	  }
 	});

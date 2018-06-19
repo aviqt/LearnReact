@@ -33,7 +33,7 @@ class UserEditor extends React.Component {
       age: age.value,
       gender: gender.value
     };
-    method(apiUrl, data,this)
+    method(apiUrl, data,this.props.routerPage)
     .then((res) => {
       if (res.id) {
         alert(editType + '用户成功');

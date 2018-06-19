@@ -1,14 +1,48 @@
 import React from 'react';
-import {post,put} from '../utils/request';
+import {post,put,get} from '../utils/request';
 import formProvider from '../utils/formProvider';
 import FormItem from '../components/FormItem';
 import AutoComplete from '../components/AutoComplete';
 
 class BookEditor extends React.Component {
+  constructor(props){
+	super(props);
+	this.state = {
+	  recommendUsers:[]
+	};
 	
+  }
+  getRecommendUsers(partialUserId){
+	get('http://localhost:4000/user?id_like=' + partialUserId,this.props.routerPage)
+	.then(res => {
+	  if(!res)return;
+	  if(res.length === 1 && res[0].id === partialUserId)return;
+	  this.setState({
+	    recommendUsers:res.map(user => {
+	  	  return{
+	  	    text:user.id + user.name,
+			value:user.id
+	  	  }
+	    })
+	  });
+	});
+  }
+  timer = 0;
+  handleOwnerIdChange(value){
+	this.props.onFormChange('owner_id',value);
+	this.setState({recommendUsers:[]});
+	
+	if(this.timer)clearTimeout(this.timer);
+	if(value){
+	  this.timer = setTimeout(() => {
+		this.getRecommendUsers(value);
+		this.timer = 0;
+	  },200);
+	}
+  }
   componentWillMount(){
 	const {editTarget,setFormValues} = this.props;
-	console.log(editTarget)
+	//console.log(editTarget)
 	if(editTarget){
 	  setFormValues(editTarget);
 	}
@@ -34,7 +68,7 @@ class BookEditor extends React.Component {
       price: price.value,
       owner_id: owner_id.value
     };
-    method(apiUrl, data,this)
+    method(apiUrl, data, this)
     .then((res) => {
       if (res.id) {
         alert(editType + '图书成功');
@@ -47,6 +81,7 @@ class BookEditor extends React.Component {
     .catch((err) => console.error(err));
   }
   render () {
+	const {recommendUsers} = this.state;
     const {form: {name, price, owner_id}, onFormChange} = this.props;
     return (
         <form onSubmit={(e) => this.handleSubmit(e)}>
@@ -68,8 +103,8 @@ class BookEditor extends React.Component {
 
 			<AutoComplete
 			 value={owner_id.value?owner_id.value + '':''}
-			 options={['10003(老马)','10005(包千语)']}
-			 onChange={(e) => onFormChange('owner_id', +e.target.value)}
+			 options={recommendUsers}
+			 onValueChange={value => this.handleOwnerIdChange(value)}
 			/>
 	  	  </FormItem>
 
@@ -111,10 +146,8 @@ BookEditor = formProvider({
     defaultValue: '',
     rules: [
       {
-        pattern: function (value) {
-          return !!value;
-        },
-        error: '请选择所有者ID'
+        pattern: /^\d{5}$/,
+        error: '请输入合法的用户ID'
       }
     ]
   }
