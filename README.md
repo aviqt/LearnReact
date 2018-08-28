@@ -39,7 +39,7 @@
 
 ## 使用 create-react-app 快速构建 React 开发环境
 
-我们需要在命令行中安装 `create-react-app` 工具，你可能还需要安装 `yarn` [^yarn]。
+我们需要在命令行中安装 `create-react-app` 工具，你可能还需要安装 `yarn` 。
 
     npm install -g create-react-app yarn
     
@@ -180,5 +180,4 @@ get(url).then(res => {
 })
 ```
 
-[^yarn]: **Yarn** 对你的代码来说是一个包管理器， 你可以通过它使用全世界开发者的代码， 或者分享自己的代码。**Yarn** 做这些快捷、安全、可靠，所以你不用担心什么。
 
