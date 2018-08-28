@@ -59,7 +59,7 @@
 
 # 实战分享
 
-前面介绍了一些 `React` 的特点和安装方法，下面是实际的应用。
+前面介绍了一些 `React` 的特点和安装方法，基础教程网上有很多很多，可以去随便找个认真的看一遍就差不多了。下面是实际的应用过程中的一些积累。
 
 ## yarn 简单用法
 
@@ -96,9 +96,9 @@
 ``` js
 import React, { Component } from 'react'
 import {
-	HashRouter as Router,
-	Switch,
-	Route,
+  HashRouter as Router,
+  Switch,
+  Route,
 } from 'react-router-dom';
 import Login from './containers/Login'
 import Index from './containers/Index'
@@ -117,11 +117,11 @@ class App extends Component {
             <li><Link to='/login'>登陆</Link></li>
           </ul>
           <hr/>
-	  <Switch>
-	     <Route path='/login' component={Login}/>
-	     <Route exact path='/' component={Index}/>
-	  </Switch>
-       </div>
+          <Switch>
+            <Route path='/login' component={Login}/>
+            <Route exact path='/' component={Index}/>
+          </Switch>
+        </div>
       </Router>
     )
   }
@@ -129,8 +129,35 @@ class App extends Component {
 export default App
 
 ```
-    
-    
+
+## Window sessionStorage 属性
+
+localStorage 和 sessionStorage 属性允许在浏览器中存储 key/value 对的数据。
+sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
+**提示**: 如果你想在浏览器窗口关闭后还保留数据，可以使用 localStorage 属性， 改数据对象没有过期时间，今天、下周、明年都能用，除非你手动去删除。
+
+### 语法
+ 
+    window.sessionStorage
+
+保存数据:
+
+    sessionStorage.setItem("key", "value");
+
+读取数据:
+
+    sessionStorage.getItem("key");
+
+删除指定键的数据:
+
+    sessionStorage.removeItem("key");
+
+删除所有数据:
+
+    sessionStorage.clear();
+
+
+
 ## fetch 封装
 
 `fetch` 用来异步加载数据，可以写一个 request.js 的文件来封装下，代码：
