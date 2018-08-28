@@ -65,20 +65,24 @@
 
 `yarn` 是一个快速、可靠、安全的依赖管理工具。
 
-### 添加依赖包
+添加依赖包
+
     yarn add [package]
     yarn add [package]@[version]
     yarn add [package]@[tag]
     
-### 升级依赖包
+升级依赖包
+
     yarn add [package]
     yarn add [package]@[version]
     yarn upgrade [package]@[tag]
     
-### 移除依赖包
+移除依赖包
+
     yarn remove [package]
     
-### 安装项目的全部依赖
+安装项目的全部依赖
+
     yarn 
     
 或者
