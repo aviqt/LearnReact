@@ -110,19 +110,19 @@ class App extends Component {
 
   render() {
     return (
-	  <Router>
+      <Router>
         <div>
           <ul>
             <li><Link to='/'>首页</Link></li>
             <li><Link to='/login'>登陆</Link></li>
           </ul>
           <hr/>
-	      <Switch>
-	        <Route path='/login' component={Login}/>
-	        <Route exact path='/' component={Index}/>
-	      </Switch>
+	  <Switch>
+	     <Route path='/login' component={Login}/>
+	     <Route exact path='/' component={Index}/>
+	  </Switch>
        </div>
-	  </Router>
+      </Router>
     )
   }
 }
