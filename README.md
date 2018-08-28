@@ -171,8 +171,8 @@ export const del = (url, body) => request('DELETE', url, body);
 ```
 
 需要使用的时候
-```
-imeprot {get} from './request';
+```js
+improt {get} from './request';
 
 let url = '';//api接口的地址
 get(url).then(res => {
