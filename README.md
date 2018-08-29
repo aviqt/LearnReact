@@ -136,9 +136,7 @@ export default App
 
 ## Window sessionStorage 属性
 
-localStorage 和 sessionStorage 属性允许在浏览器中存储 key/value 对的数据。
-sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
-**提示**: 如果你想在浏览器窗口关闭后还保留数据，可以使用 localStorage 属性， 改数据对象没有过期时间，今天、下周、明年都能用，除非你手动去删除。
+localStorage 和 sessionStorage 属性允许在浏览器中存储 key/value 对的数据。<Br>sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。<Br>**提示**: 如果你想在浏览器窗口关闭后还保留数据，可以使用 localStorage 属性， 改数据对象没有过期时间，今天、下周、明年都能用，除非你手动去删除。<Br>
 
 ### 语法
  
