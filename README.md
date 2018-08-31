@@ -221,14 +221,12 @@ import PropTypes from 'prop-types'
 
 export HComponent = (OriginalComponent) => {
   class NewComponent extends Component {
-    static contextTypes = {
-      store: PropTypes.object
-    }
+
 
     // 一些通用的操作
 
     render () {
-      return <WrappedComponent />
+      return <OriginalComponent />
     }
   }
 
